@@ -1,0 +1,10 @@
+package Exercice5;
+
+public class Gestion_stock {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+}

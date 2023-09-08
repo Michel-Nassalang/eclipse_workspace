@@ -1,0 +1,19 @@
+1643034787152	Encapsulate field 'idClasse'
+1643034798890	Encapsulate field 'libelleClasse'
+1643034803875	Encapsulate field 'nb_etudiants'
+1643034809385	Encapsulate field 'nb_matiere'
+1643034817246	Encapsulate field 'niveauClasse'
+1643034823523	Encapsulate field 'idForamation'
+1643106656049	Encapsulate field 'idPersonne'
+1643106662020	Encapsulate field 'codeEtudiant'
+1643106674134	Encapsulate field 'idClasse'
+1643209904406	Delete element
+1643213510502	Delete element
+1643222262835	Delete element
+1643223094630	Delete element
+1643223306406	Delete element
+1643302429427	Move compilation unit
+1643364963968	Encapsulate field 'value'
+1643365119801	Encapsulate field 'error'
+1643375655260	Encapsulate field 'relance'
+1643550767944	Delete element

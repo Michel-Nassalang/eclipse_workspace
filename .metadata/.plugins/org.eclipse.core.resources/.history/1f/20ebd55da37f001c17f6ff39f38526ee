@@ -1,0 +1,59 @@
+package Window;
+
+import java.awt.Color;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class Panel {
+
+	public Panel() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	
+	
+	protected static JPanel onMatieres() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		JButton affMat = new JButton("Matières disponibles");
+		panel.add(affMat);
+		JButton rechMat = new JButton("Recherche");
+		panel.add(rechMat);
+		JButton ajMat = new JButton("Ajout");
+		panel.add(ajMat);
+		JButton modifMat = new JButton("Modification");
+		panel.add(modifMat);
+		return panel;
+	}
+	protected static JPanel onExamens() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		JButton affEx = new JButton("Examens");
+		panel.add(affEx);
+		JButton rechEx = new JButton("Recherche");
+		panel.add(rechEx);
+		JButton ajEx = new JButton("Ajout");
+		panel.add(ajEx);
+		JButton modifEx = new JButton("Modification");
+		panel.add(modifEx);
+		return panel;
+	}
+	protected static JPanel onNotes() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		JButton affNo = new JButton("Notes disponibles");
+		panel.add(affNo);
+		JButton rechNo = new JButton("Recherche");
+		panel.add(rechNo);
+		JButton ajNo = new JButton("Ajout");
+		panel.add(ajNo);
+		JButton modifNo = new JButton("Modification");
+		panel.add(modifNo);
+		return panel;
+	}
+
+}

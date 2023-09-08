@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;Interfaces.Fenetre.sens&apos; in &apos;Interfaces.Fenetre&apos;&#x0D;&#x0A;- Original project: &apos;TpIPSL&apos;&#x0D;&#x0A;- Original element: &apos;Interfaces.Fenetre.sens&apos;&#x0D;&#x0A;- Getter method name: &apos;isSens&apos;&#x0D;&#x0A;- Setter method name: &apos;setSens&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;sens&apos;" flags="589830" getter="isSens" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;Interfaces{Fenetre.java[Fenetre^sens" insertion="2" setter="setSens" stamp="1641384625009" version="1.0" visibility="1"/>
+</session>

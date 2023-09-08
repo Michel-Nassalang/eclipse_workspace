@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.ipsl.calcul
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.ipsl.calcul
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.ipsl.calcul; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.xtext.ipsl.calcul,
+ org.xtext.ipsl.calcul.services,
+ org.xtext.ipsl.calcul.calcul.impl,
+ org.xtext.ipsl.calcul.parser.antlr,
+ org.xtext.ipsl.calcul.scoping,
+ org.xtext.ipsl.calcul.calcul,
+ org.xtext.ipsl.calcul.serializer,
+ org.xtext.ipsl.calcul.calcul.util,
+ org.xtext.ipsl.calcul.generator,
+ org.xtext.ipsl.calcul.parser.antlr.internal,
+ org.xtext.ipsl.calcul.validation
+Import-Package: org.apache.log4j

@@ -1,0 +1,37 @@
+package sipix;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+public class fichiers {
+
+	public static void main(String[] args) throws IOException {
+		File fichier = new File("C://Users/Miki_Biboy/eclipse-workspace/testify/src/sipix/fichier.html");
+		File doc = new File("C://Users/Miki_Biboy/eclipse-workspace/testify/src/sipix/folder");
+		if(!fichier.exists()) {
+			try {
+				fichier.createNewFile();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			List<String> htmlines = Arrays.asList("html","head","/head","body","<p>Aaron et Moise sont des frères.</p>","/body","/html");
+			FileWriter writer = new FileWriter(fichier);
+			BufferedWriter file = new BufferedWriter(writer);
+			for(String part : htmlines) {
+				file.write(part);
+				file.newLine();
+				System.out.println(part);
+			}
+			file.close();
+			writer.close();
+		}
+		if(!doc.exists()) {
+			doc.mkdir();
+		}
+	}
+}

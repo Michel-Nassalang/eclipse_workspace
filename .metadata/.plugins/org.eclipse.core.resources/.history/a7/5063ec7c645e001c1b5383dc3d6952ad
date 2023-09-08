@@ -1,0 +1,15 @@
+
+public class Personne {
+	String nom;
+	String prenom;
+	int age;
+	String sexe;
+
+	public Personne(String nom, String prenom, int age, String sexe) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		this.sexe = sexe;
+	}
+	
+}

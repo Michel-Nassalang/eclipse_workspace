@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated football -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="football.presentation.FootballModelWizardID"
+            name="%_UI_FootballModelWizard_label"
+            class="football.presentation.FootballModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FootballModelFile.gif">
+         <description>%_UI_FootballModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated football -->
+      <editor
+            id="football.presentation.FootballEditorID"
+            name="%_UI_FootballEditor_label"
+            icon="icons/full/obj16/FootballModelFile.gif"
+            extensions="football"
+            class="football.presentation.FootballEditor"
+            contributorClass="football.presentation.FootballActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

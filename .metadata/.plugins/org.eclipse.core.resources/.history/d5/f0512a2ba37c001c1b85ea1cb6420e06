@@ -1,0 +1,25 @@
+package Database;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class JDBC {
+
+	public static void main(String[] args) throws SQLException{
+		String user = "e-learning";
+		String password = "learning";
+		String base = "jdbc:mysql://localhost:3306/centre_formation";
+		String query = "Select * from classe";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+		}
+		try {
+			Connection con = DriverManager.getConnection(query, user, password);
+		}
+	}
+}

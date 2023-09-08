@@ -1,0 +1,59 @@
+grammar org.xtext.ipsl.figure.Figure with org.eclipse.xtext.common.Terminals
+
+generate figure "http://www.xtext.org/ipsl/figure/Figure"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+PROGRAMME :
+
+	(fig=FIGURE)? ;
+
+FIGURE :
+	'Figure' nom=(CERCLE| RECTANGLE | CARRE);
+	
+DEBUT :
+
+	'BEGIN' ;
+	
+CARRE:
+	nom='Carre'
+	debut=DEBUT
+	('cote' ':' cote=REEL ';')
+	retour=RETURN
+	end=END
+;
+RECTANGLE:
+	nom='Rectangle'
+	debut=DEBUT
+	('longueur' ':' longueur=REEL ';' &
+	'largeur' ':' largeur=REEL ';' )
+	retour=RETURN
+	end=END
+;
+
+CERCLE:
+	nom='Cercle'
+	debut=DEBUT
+	('rayon' ':' rayon=REEL ';')
+	retour=RETURN
+	end=END
+;
+
+
+RETURN :
+
+	'return' resultat=RETOUR ';' ;
+
+RETOUR :
+
+	'surface'|'perimetre';
+
+END :
+
+	'END' ;
+	
+
+REEL :
+	reel=DOUBLE ;
+
+terminal DOUBLE returns ecore::EDouble: '-'?INT('.'INT)?;

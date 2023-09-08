@@ -1,0 +1,160 @@
+package Exercice5;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Scanner;
+public class Gestion_stock {
+	
+
+	static Collection <Article> stock = new ArrayList<Article>();
+
+	public static void presence(Collection<Article> stock) {
+		if(stock.isEmpty()) {
+			System.out.println("Le stock est vide.");
+		}else{
+			System.out.println("Le stock n'est pas vide.");
+		}
+	}
+	public static void affichage(Collection<Article> collection) {
+		System.out.println("Les articles présents dans le stock sont : ");
+		Iterator<Article> it = collection.iterator();
+		while(it.hasNext()) {
+			Article article = (Article) it.next();
+			System.out.println(article.getNom() + " qui est référencé par " + article.getReference() + " avec une quantité de " + article.getQuantite() + " coûte " + article.getPrix() + " Fcfa");
+		}
+	}
+	public static Article rechercheRef(int reference) {
+		Article produit = null;
+		Iterator<Article> it = stock.iterator();
+		while(it.hasNext()) {
+			Article article = (Article) it.next();
+			if(article.getReference() == reference) {
+				produit = article;
+				break;
+			}
+		}
+		return produit;
+	}
+	public static Article rechercheNom(String nom) {
+		Article produit = null;
+		Iterator<Article> it = stock.iterator();
+		while(it.hasNext()) {
+			Article article = (Article) it.next();
+			if(article.getNom() == nom) {
+				produit = article;
+				break;
+			}
+		}
+		return produit;
+	}
+	public static Collection<Article> recherchePrix(float prixmin, float prixmax) {
+		Collection<Article> caisse = new ArrayList<Article>();
+		Iterator<Article> it = stock.iterator();
+		while(it.hasNext()) {
+			Article article = (Article) it.next();
+			if(article.getQuantite() >= prixmin && article.getQuantite() <= prixmax) {
+				caisse.add(article);
+			}
+		}
+		return caisse;
+	}
+	public static void ajout(int reference, String nom, float prix, int quantite) {
+		if(rechercheRef(reference) == null) {
+			Article newart = new Article(reference, nom, prix, quantite);
+			stock.add(newart);
+			System.out.println("L'élement donné est nouvellement ajouté dans le stock.");
+		}else {
+			modification(reference, prix, rechercheRef(reference).getQuantite()+quantite);
+			System.out.println("L'élement réferencé existe déja, on a donc augmenté la quantité stockée");
+		}
+	}
+	public static void modification(int reference, float prix, int quantite) {
+		if(rechercheRef(reference) != null) {
+			rechercheRef(reference).setPrix(prix);
+			rechercheRef(reference).setQuantite(quantite);
+		}
+	}
+	public static void suppression(int reference) {
+		if(rechercheRef(reference) != null) {
+			stock.remove(rechercheRef(reference));
+			System.out.println("La suppression de l'élement réferencé est faite.");
+		}else {
+			System.out.println("L'élement réferencé n'existe pas dans le stock");
+		}
+	}
+	public static void quitter() {
+		System.out.println("Nous espérons que vous êtes satisfait.");
+	}
+	public static Scanner scanner = new Scanner(System.in);
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Bonjour dans notre service de gestion de stock !!!");
+		System.out.println("Veuillez choisir parmi les services proposés dans le menu suivant : ");
+		System.out.println("--------------------------");
+		System.out.println("1 : Rechercher un article par référence");
+		System.out.println("2 : Ajouter un article au stock en vérifiant l’unicité de la référence");
+		System.out.println("3 : Supprimer un article par référence");
+		System.out.println("4 : Modifier un article par référence");
+		System.out.println("5 : Rechercher un article par nom");
+		System.out.println("6 : Rechercher un article par intervalle de prix de vente");
+		System.out.println("7 : Afficher tous les articles");
+		System.out.println("8 :  Quitter");
+		System.out.println("--------------------------");
+		System.out.println("--------------------------");
+		Integer entree = scanner.nextInt();
+		switch(entree) {
+		case 1 : 
+			System.out.println("Recherche d'un article par référence");
+			System.out.println("Donnez la référence de l'article à rechercher");
+			Integer ref = scanner.nextInt();
+			rechercheRef(ref);
+			break;
+		case 2 : 
+			System.out.println("Ajout d'un article au stock");
+			System.out.println("Donnez succesivement la référence, le nom, le prix et la quantité");
+			Integer newref = scanner.nextInt();
+			String nom = scanner.next();
+			Integer prix = scanner.nextInt();
+			Integer quantite = scanner.nextInt();
+			ajout(newref,nom,prix,quantite);
+			break;
+		case 3 : 
+			System.out.println("Supprission d'un article par référence");
+			System.out.println("Donnez la référence de l'article à supprimer");
+			Integer supref = scanner.nextInt();
+			suppression(supref);
+			break;
+		case 4 : 
+			System.out.println("Modification d'un article par référence");
+			System.out.println("Donnez succesivement la référence, le prix et la quantité");
+			Integer modref = scanner.nextInt();
+			Integer modprix = scanner.nextInt();
+			Integer modquantite = scanner.nextInt();
+			modification(modref, modprix, modquantite);
+			break;
+		case 5 : 
+			System.out.println("Recherche d'un article par nom");
+			System.out.println("Donnez le nom de l'article à rechercher");
+			String searchnom = scanner.next();
+			rechercheNom(searchnom);
+			break;
+		case 6 :
+			System.out.println("Recherche d'un article par intervalle de prix de vente");
+			System.out.println("Donnez l'intervalle de prix où on recherche en donnant le minimum suivi du maximum: ");
+			float prixmin = scanner.nextFloat();
+			float prixmax = scanner.nextFloat();
+			recherchePrix(prixmin, prixmax);
+			break;
+		case 7 : 
+			System.out.println("Affichage de tous les articles");
+			affichage(stock);
+			break;
+		case 8 : 
+			System.out.println("sortie");
+			quitter();
+			break;
+		}
+		
+	}
+	
+}

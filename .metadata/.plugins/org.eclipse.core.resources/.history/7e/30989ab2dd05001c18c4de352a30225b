@@ -1,0 +1,32 @@
+package sipix;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class fichiers {
+
+	public static void main(String[] args) throws IOException {
+		File fichier = new File("C://Users/Miki_Biboy/eclipse-workspace/testify/src/sipix/fichier.txt");
+		File doc = new File("C://Users/Miki_Biboy/eclipse-workspace/testify/src/sipix/folder");
+		if(!fichier.exists()) {
+			try {
+				fichier.createNewFile();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			FileWriter writer = new FileWriter(fichier);
+			BufferedWriter file = new BufferedWriter(writer);
+			file.write("Ton père s\'appelle Aaron.");
+			file.newLine();
+			file.write("Ton frère s\'appelle Moise");
+			file.newLine();
+			file.write("Aaron a une age de 80 ans.");
+		}
+		if(!doc.exists()) {
+			doc.mkdir();
+		}
+	}
+}

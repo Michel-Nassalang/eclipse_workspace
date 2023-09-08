@@ -1,0 +1,12 @@
+package sipix;
+
+import java.io.File;
+
+public class fichiers {
+
+	public static void main(String[] args) {
+		File fichier = new File('C:\Users\Miki_Biboy\eclipse-workspace\testify\src\sipix');
+		Folder doc = new Folder('C:\Users\Miki_Biboy\eclipse-workspace\testify\src\sipix\folder');
+		
+	}
+}

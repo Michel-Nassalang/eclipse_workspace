@@ -1,0 +1,20 @@
+package exercice2;
+
+public class Etudiant extends Enseignant{
+
+	public Etudiant(String prenom, String nom, int heures) {
+		// TODO Auto-generated constructor stub
+		super(prenom, nom, heures);
+	}
+	
+	public float salaire() {
+		return 0;
+	}
+	public float charges() {
+		return 0;
+	}
+	public String type() {
+		return "Etudiant";
+	}
+
+}

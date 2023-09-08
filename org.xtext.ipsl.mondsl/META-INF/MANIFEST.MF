@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.ipsl.mondsl
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.ipsl.mondsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.ipsl.mondsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.xtext.ipsl.mydsl.services,
+ org.xtext.ipsl.mydsl.validation,
+ org.xtext.ipsl.mydsl.monDsl.util,
+ org.xtext.ipsl.mydsl.generator,
+ org.xtext.ipsl.mydsl.monDsl,
+ org.xtext.ipsl.mydsl.monDsl.impl,
+ org.xtext.ipsl.mydsl,
+ org.xtext.ipsl.mydsl.parser.antlr,
+ org.xtext.ipsl.mydsl.scoping,
+ org.xtext.ipsl.mydsl.parser.antlr.internal,
+ org.xtext.ipsl.mydsl.serializer
+Import-Package: org.apache.log4j

@@ -1,0 +1,21 @@
+package Exercice1;
+
+public class Divertissement extends Emission{
+	
+	private String animateur;
+	public Divertissement(String nom, String animateur) {
+		super(nom, 2);
+		this.setAnimateur(animateur);
+	}
+	public String getAnimateur() {
+		return animateur;
+	}
+	public void setAnimateur(String animateur) {
+		this.animateur = animateur;
+	}
+	
+	public void programme(int h) {
+		
+	}
+
+}

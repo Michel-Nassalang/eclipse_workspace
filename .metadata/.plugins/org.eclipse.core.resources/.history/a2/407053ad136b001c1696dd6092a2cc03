@@ -1,0 +1,18 @@
+package exercice2;
+
+public class Chercheur extends Enseignant{
+	public Chercheur(String prenom, String nom, int heures) {
+		// TODO Auto-generated constructor stub
+		super(prenom, nom, heures);
+	}
+	
+	public float salaire(int nbhours) {
+		return 0;
+	}
+	public float charges() {
+		return 0;
+	}
+	public String type() {
+		return "Chercheur";
+	}
+}

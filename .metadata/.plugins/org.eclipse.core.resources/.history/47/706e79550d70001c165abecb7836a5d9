@@ -1,0 +1,33 @@
+package Exercice1;
+
+public class Fiction extends Emission{
+
+	private String realis;
+	private int annee;
+	private boolean redif;
+	public Fiction(String nom, int annee, String realis, int duree, boolean redif) {
+		super(nom,duree);
+		this.realis = realis;
+		this.redif = redif;
+		this.annee = annee;
+	}
+	public boolean isRedif() {
+		return redif;
+	}
+	public void setRedif(boolean redif) {
+		this.redif = redif;
+	}
+	public String getRealis() {
+		return realis;
+	}
+	public void setRealis(String realis) {
+		this.realis = realis;
+	}
+	public int getAnnee() {
+		return annee;
+	}
+	public void setAnnee(int annee) {
+		this.annee = annee;
+	}
+
+}

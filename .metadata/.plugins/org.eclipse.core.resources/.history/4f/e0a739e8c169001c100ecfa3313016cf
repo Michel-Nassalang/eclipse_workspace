@@ -1,0 +1,12 @@
+package Exercice5;
+import java.util.ArrayList;
+import java.util.Collection;
+public class Gestion_stock {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Collection <Article> stock = new ArrayList<Article>();
+		stock.isEmpty();
+	}
+	
+}

@@ -1,0 +1,228 @@
+package org.xtext.ipsl.calcul.interpreter;
+
+import javax.swing.*;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.xtext.ipsl.calcul.CalculStandaloneSetup;
+import org.xtext.ipsl.calcul.calcul.CALCUL;
+import org.xtext.ipsl.calcul.calcul.EFFECTIF;
+import org.xtext.ipsl.calcul.calcul.MODALITE;
+import org.xtext.ipsl.calcul.calcul.STATISTIQUE;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.List;
+
+public class TextEditorGUI {
+    private JTextArea textArea;
+    private JFrame frame;
+    private JTextArea resultTextArea;
+
+    public TextEditorGUI() {
+        frame = new JFrame("Editeur de texte");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        textArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("Fichier");
+        JMenuItem openItem = new JMenuItem("Ouvrir");
+        JMenuItem saveItem = new JMenuItem("Enregistrer");
+        JMenuItem exitItem = new JMenuItem("Quitter");
+
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+        menuBar.add(fileMenu);
+
+        JButton executeButton = new JButton("Exécuter");
+        executeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                executeCode();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.add(executeButton);
+        frame.getContentPane().add(buttonPanel, BorderLayout.NORTH);
+
+        resultTextArea = new JTextArea();
+        resultTextArea.setEditable(false);
+        resultTextArea.setBackground(Color.BLACK);
+        resultTextArea.setForeground(Color.WHITE); 
+        JScrollPane resultScrollPane = new JScrollPane(resultTextArea);
+        resultScrollPane.setPreferredSize(new Dimension(400, 200));
+
+        frame.getContentPane().add(resultScrollPane, BorderLayout.SOUTH);
+
+        frame.setJMenuBar(menuBar);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
+
+    private void executeCode() {
+        // Logique d'exécution du code à implémenter ici
+        String code = textArea.getText();
+        
+
+        printTextAreaContent(code);
+        System.out.println("###########################");
+        String res = interpret(code);
+        System.out.println(res);
+        resultTextArea.setText(code);
+        resultTextArea.append("\n###########################");
+        resultTextArea.append("\n" + res);
+    }
+    
+    public String interpret(String code) {
+        String result = " Resultat = 0.0";
+
+        new CalculStandaloneSetup();
+        CalculStandaloneSetup.doSetup();
+        
+        ResourceSet resourceSet = new ResourceSetImpl();
+        Resource resource = resourceSet.createResource(URI.createURI("test.calcul"));
+
+        try {
+            // Chargement du texte dans le Resource
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(code.getBytes());
+            resource.load(inputStream, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        if (!resource.getContents().isEmpty()) {
+	        EObject eobject = resource.getContents().get(0);
+	        CALCUL oprDSL = (CALCUL) eobject;
+	        STATISTIQUE statistique = oprDSL.getOperation();
+	        String resultat = statistique.getResultat();
+	        MODALITE mod = statistique.getModalite();
+	        EFFECTIF eff = statistique.getEffectif();
+	        double[] modalites = parseValues(mod.getValues());
+	        double[] effectifs = parseValues(eff.getValues());
+	
+	
+	     
+	        if (modalites.length == 0 || effectifs.length == 0) {
+	            System.out.println("Données manquantes : modalités ou effectifs non spécifiés.");
+	            return result;
+	        }
+	
+	        if (resultat.equals("moyenne")) {
+	            double moyenne = calculateMean(modalites, effectifs);
+	            System.out.println("Moyenne : " + moyenne);
+	            result = "Moyenne : resultat = " + moyenne;
+	        } else if (resultat.equals("mode")) {
+	            double mode = calculateMode(modalites, effectifs);
+	            System.out.println("Mode : " + mode);
+	            result = "Mode : resultat = " + mode;
+	        } else if (resultat.equals("variance")) {
+	            double variance = calculateVariance(modalites, effectifs);
+	            System.out.println("Variance : " + variance);
+	            result = "Variance : resultat = " + variance;
+	        } else if (resultat.equals("ecart-type")) {
+	            double variance = calculateVariance(modalites, effectifs);
+	            double ecartType = calculateStandardDeviation(variance);
+	            System.out.println("Écart type : " + ecartType);
+	            result = "Écart type : resultat = " + ecartType;
+	        } else {
+	            System.out.println("Opération statistique non prise en charge.");
+	            result = "Opération statistique non prise en charge.";
+	        }
+        }
+        return result;
+    }
+    
+    private static void printTextAreaContent(String text) {
+        try (BufferedReader br = new BufferedReader(new StringReader(text))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private double[] parseValues(List<Double> values) {
+        double[] array = new double[values.size()];
+        for (int i = 0; i < values.size(); i++) {
+            array[i] = values.get(i);
+        }
+        return array;
+    }
+
+
+       
+       private double calculateMean(double[] modalites, double[] effectifs) {
+           double sum = 0;
+           double totalEffectif = 0;
+           for (int i = 0; i < modalites.length; i++) {
+               sum += modalites[i] * effectifs[i];
+               totalEffectif += effectifs[i];
+           }
+           return sum / totalEffectif;
+       }
+
+       private double calculateMode(double[] modalites, double[] effectifs) {
+           double mode = modalites[0];
+           double maxEffectif = effectifs[0];
+           for (int i = 1; i < modalites.length; i++) {
+               if (effectifs[i] > maxEffectif) {
+                   mode = modalites[i];
+                   maxEffectif = effectifs[i];
+               }
+           }
+           return mode;
+       }
+
+       private double calculateVariance(double[] modalites, double[] effectifs) {
+           double mean = calculateMean(modalites, effectifs);
+           double sumSquaredDifferences = 0;
+           double totalEffectif = 0;
+           for (int i = 0; i < modalites.length; i++) {
+               double difference = modalites[i] - mean;
+               sumSquaredDifferences += difference * difference * effectifs[i];
+               totalEffectif += effectifs[i];
+           }
+           return sumSquaredDifferences / totalEffectif;
+       }
+
+       private double calculateStandardDeviation(double variance) {
+           return Math.sqrt(variance);
+       }
+       
+       private static void printFileContent(String filePath) {
+           try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+               String line;
+               while ((line = br.readLine()) != null) {
+                   System.out.println(line);
+               }
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new TextEditorGUI();
+            }
+        });
+    }
+}
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Enseignement" nsURI="https://enseignement.sn" nsPrefix="Enseignement">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore"/>
+  <eAnnotations source="http://www.eclipse.org/OCL/Import"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Domaine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enseignants" upperBound="-1"
+        eType="#//Enseignant" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="departements" upperBound="-1"
+        eType="#//Departement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="universites" upperBound="-1"
+        eType="#//Universite" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etudiants" upperBound="-1"
+        eType="#//Etudiant" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notes" upperBound="-1"
+        eType="#//Note" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matieres" upperBound="-1"
+        eType="#//Matiere" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enseignant">
+    <eOperations name="operation">
+      <eParameters name="m" eType="#//Matiere"/>
+    </eOperations>
+    <eOperations name="augmenterSal">
+      <eParameters name="v" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="debut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="salaire" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
+        defaultValueLiteral="0.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="titre" eType="#//Titre"
+        defaultValueLiteral="MA"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialisations" upperBound="-1"
+        eType="#//Matiere" eOpposite="#//Matiere/specialistes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enseignements" lowerBound="1"
+        upperBound="-1" eType="#//Matiere" eOpposite="#//Matiere/prof"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Departement">
+    <eOperations name="ajouter">
+      <eParameters name="e" eType="#//Enseignant"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="responsable" eType="#//Enseignant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employes" upperBound="-1"
+        eType="#//Enseignant" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Universite">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sigle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inscrits" upperBound="-1"
+        eType="#//Etudiant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="facultes" lowerBound="1"
+        upperBound="-1" eType="#//Departement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Etudiant">
+    <eOperations name="estAdmis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="age" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ddn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultats" lowerBound="1"
+        upperBound="-1" eType="#//Note" eOpposite="#//Note/etudiant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Note">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idNote" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0.0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matiere" lowerBound="1"
+        eType="#//Matiere" eOpposite="#//Matiere/resultats"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="etudiant" lowerBound="1"
+        eType="#//Etudiant" eOpposite="#//Etudiant/resultats"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Matiere">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultats" upperBound="-1"
+        eType="#//Note" eOpposite="#//Note/matiere"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialistes" upperBound="-1"
+        eType="#//Enseignant" eOpposite="#//Enseignant/specialisations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prof" lowerBound="1" eType="#//Enseignant"
+        eOpposite="#//Enseignant/enseignements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Titre">
+    <eLiterals name="MA"/>
+    <eLiterals name="MC"/>
+    <eLiterals name="PR"/>
+  </eClassifiers>
+</ecore:EPackage>

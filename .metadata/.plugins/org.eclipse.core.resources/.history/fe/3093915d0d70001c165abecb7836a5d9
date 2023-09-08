@@ -1,0 +1,16 @@
+package Exercice1;
+
+public class Reportage extends Emission{
+	private String theme;
+	public Reportage(String nom, int duree, String theme) {
+		super(nom,duree);
+		this.theme = theme;
+	}
+	public String getTheme() {
+		return theme;
+	}
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+}

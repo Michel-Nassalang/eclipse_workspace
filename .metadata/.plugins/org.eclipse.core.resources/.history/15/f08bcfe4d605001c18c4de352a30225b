@@ -1,0 +1,24 @@
+package sipix;
+
+import java.io.File;
+import java.io.IOException;
+
+public class fichiers {
+
+	public static void main(String[] args) {
+		File fichier = new File('C:\Users\Miki_Biboy\eclipse-workspace\testify\src\sipix\fichier.txt');
+		File doc = new File('C:\Users\Miki_Biboy\eclipse-workspace\testify\src\sipix\folder');
+		if(!fichier.exists()) {
+			try {
+				fichier.createNewFile();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(!doc.exists()) {
+			try {
+				doc.mkdir();
+			}
+		}
+	}
+}

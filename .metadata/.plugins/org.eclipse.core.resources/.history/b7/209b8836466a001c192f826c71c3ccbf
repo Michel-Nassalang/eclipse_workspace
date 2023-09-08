@@ -1,0 +1,50 @@
+package Exercice5;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+public class Gestion_stock {
+	
+
+	static Collection <Article> stock = new ArrayList<Article>();
+
+	public static void presence(Collection stock) {
+		if(stock.isEmpty()) {
+			System.out.println("Le stock est vide.");
+		}else{
+			System.out.println("Le stock n'est pas vide.");
+		}
+	}
+	public Article rechercheRef(Collection stock, int reference) {
+		Article produit = null;
+		Iterator it = stock.iterator();
+		while(it.hasNext()) {
+			Article article = (Article) it.next();
+			if(article.getReference() == reference) {
+				produit = article;
+				break;
+			}
+		}
+		return produit;
+	}
+	public Article rechercheNom(String nom) {
+		Article produit = null;
+		Iterator it = stock.iterator();
+		while(it.hasNext()) {
+			Article article = (Article) it.next();
+			if(article.getNom() == nom) {
+				produit = article;
+				break;
+			}
+		}
+		return produit;
+	}
+	public void ajout(int reference) {
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		presence(stock);
+		
+	}
+	
+}

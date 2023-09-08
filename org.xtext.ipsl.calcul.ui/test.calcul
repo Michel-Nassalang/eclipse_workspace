@@ -1,0 +1,7 @@
+program calculmoy
+begin
+	mod: 2, 4, 8, 15, 7;
+	eff: 6, 2, 9, 1, 5;
+
+	return variance;
+end

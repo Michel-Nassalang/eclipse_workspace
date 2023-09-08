@@ -1,0 +1,136 @@
+package Window;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
+public class Centre extends JFrame{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Centre() {
+		super("Centre de Formation");
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(900, 700);
+		this.setLocationRelativeTo(null);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("/tree.png"));
+		this.setIconImage(icon.getImage());
+		JPanel contentPane = (JPanel) this.getContentPane();
+		JPanel contentGlass = (JPanel) this.getGlassPane();
+		contentPane.setLayout(new BorderLayout());
+		contentPane.add(ScrollView(),BorderLayout.WEST);
+		contentPane.add(ToolBar(),BorderLayout.NORTH);
+		contentGlass.add(panelVenue());
+		contentGlass.add(panelsuite());
+	}
+	private JScrollPane ScrollView() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		JLabel titre = new JLabel("Centre de Formation", SwingConstants.CENTER);
+		titre.setFont(new Font("Forte", Font.PLAIN,16));
+		panel.add(titre, BorderLayout.NORTH);
+		panel.add(panelWest());
+		panel.setBackground(Color.WHITE);
+		JScrollPane scroll = new JScrollPane(panel);
+		scroll.setPreferredSize(new Dimension(200,0));
+		return scroll;
+	}
+	private JPanel panelWest() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		panel.setBackground(Color.WHITE);
+		JLabel ges = new JLabel("Gestion");
+		ges.setFont(new Font("Roboto",Font.ITALIC,14));
+		panel.add(ges);
+		panel.add(gridlayout(), SwingConstants.CENTER);
+		return panel;
+	}
+	private JPanel gridlayout() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(9,1));
+		panel.setBackground(Color.white);
+		panel.setSize(160, 0);
+		JButton sec = new JButton("Sections");
+		JButton form = new JButton("Formations");
+		JButton cla = new JButton("Classes");
+		JButton prof = new JButton("Professeurs");
+		JButton etu = new JButton("Etudiants");
+		JButton mater = new JButton("Matériels");
+		JButton mat = new JButton("Matières");
+		JButton exam = new JButton("Examens");
+		JButton note = new JButton("Notes");
+		panel.add(sec, SwingConstants.CENTER);
+		panel.add(form, SwingConstants.CENTER);
+		panel.add(cla, SwingConstants.CENTER);
+		panel.add(prof, SwingConstants.CENTER);
+		panel.add(etu, SwingConstants.CENTER);
+		panel.add(mater, SwingConstants.CENTER);
+		panel.add(mat, SwingConstants.CENTER);
+		panel.add(exam, SwingConstants.CENTER);
+		panel.add(note, SwingConstants.CENTER);
+		return panel;
+	}
+	private JToolBar ToolBar() {
+		JToolBar toolbar = new JToolBar();
+		toolbar.setLayout(new BorderLayout());
+		//JLabel titre = new JLabel("Centre de Formation");
+		//titre.setFont(new Font("Forte", Font.PLAIN,16));
+		//toolbar.add(titre, BorderLayout.WEST);
+		JTextField recherche = new JTextField("Rechercher ...");
+		recherche.setPreferredSize(new Dimension(125,28));
+		toolbar.add(recherche, BorderLayout.EAST);
+		return toolbar;
+	}
+	private JPanel panelVenue() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2,1, 20,5));
+		JLabel mot = new JLabel("Bienvenue chèr(e) étudiant(e) !!!", SwingConstants.CENTER);
+		mot.setFont(new Font("Forte", Font.BOLD,25));
+		mot.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
+		JLabel mots = new JLabel("Nous vous souhaitons la bienvenue dans le centre de Formation Cogito !!!", SwingConstants.CENTER);
+		mots.setFont(new Font("Forte", Font.PLAIN,18));
+		panel.add(mot, BorderLayout.CENTER);
+		panel.add(mots, BorderLayout.CENTER);
+		return panel;
+	}
+	private JPanel panelsuite() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		JLabel imgLab = new JLabel();
+		imgLab.setPreferredSize(new Dimension(350,300));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/nature.jpg"));
+		Image image = img.getImage();
+		Image imgscale = image.getScaledInstance(350, 300, Image.SCALE_SMOOTH);
+		ImageIcon simg = new ImageIcon(imgscale);
+		imgLab.setIcon(simg);
+		panel.add(imgLab, BorderLayout.CENTER);
+		return panel;
+	}
+	
+	public static void main(String[] args) throws Exception{
+		UIManager.setLookAndFeel(new NimbusLookAndFeel());
+		Centre acceuil = new Centre();
+		acceuil.setVisible(true);
+	}
+
+}

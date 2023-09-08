@@ -1,0 +1,17 @@
+package exercice2;
+
+public class Vacataire extends Enseignant{
+
+	public Vacataire(String prenom, String nom, int heures) {
+		// TODO Auto-generated constructor stub
+		super(prenom, nom, heures);
+	}
+	
+	public float salaire() {
+		return 0;
+	}
+	public float charges() {
+		return 0;
+	}
+
+}

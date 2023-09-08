@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/sn.domaine.enseignement/src" modelPluginID="sn.domaine.enseignement"
+    modelName="Enseignement" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>enseignement.ecore</foreignModel>
+  <genPackages prefix="Enseignement" disposableProviderFactory="true" ecorePackage="enseignement.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="enseignement.ecore#//Titre">
+      <genEnumLiterals ecoreEnumLiteral="enseignement.ecore#//Titre/MA"/>
+      <genEnumLiterals ecoreEnumLiteral="enseignement.ecore#//Titre/MC"/>
+      <genEnumLiterals ecoreEnumLiteral="enseignement.ecore#//Titre/PR"/>
+    </genEnums>
+    <genClasses ecoreClass="enseignement.ecore#//Domaine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Domaine/enseignants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Domaine/departements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Domaine/universites"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Domaine/etudiants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Domaine/notes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Domaine/matieres"/>
+    </genClasses>
+    <genClasses ecoreClass="enseignement.ecore#//Enseignant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Enseignant/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Enseignant/debut"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Enseignant/salaire"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Enseignant/titre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Enseignant/service"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Enseignant/age"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Enseignant/specialisations"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Enseignant/enseignements"/>
+      <genOperations ecoreOperation="enseignement.ecore#//Enseignant/operation">
+        <genParameters ecoreParameter="enseignement.ecore#//Enseignant/operation/m"/>
+      </genOperations>
+      <genOperations ecoreOperation="enseignement.ecore#//Enseignant/augmenterSal">
+        <genParameters ecoreParameter="enseignement.ecore#//Enseignant/augmenterSal/v"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="enseignement.ecore#//Departement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Departement/nom"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Departement/responsable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference enseignement.ecore#//Departement/employes"/>
+      <genOperations ecoreOperation="enseignement.ecore#//Departement/ajouter">
+        <genParameters ecoreParameter="enseignement.ecore#//Departement/ajouter/e"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="enseignement.ecore#//Universite">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Universite/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Universite/sigle"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Universite/inscrits"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Universite/facultes"/>
+    </genClasses>
+    <genClasses ecoreClass="enseignement.ecore#//Etudiant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Etudiant/nom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Etudiant/ddn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Etudiant/resultats"/>
+      <genOperations ecoreOperation="enseignement.ecore#//Etudiant/estAdmis"/>
+      <genOperations ecoreOperation="enseignement.ecore#//Etudiant/age"/>
+    </genClasses>
+    <genClasses ecoreClass="enseignement.ecore#//Note">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Note/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Note/idNote"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Note/val"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Note/matiere"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Note/etudiant"/>
+    </genClasses>
+    <genClasses ecoreClass="enseignement.ecore#//Matiere">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Matiere/heure"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute enseignement.ecore#//Matiere/nom"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Matiere/resultats"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Matiere/specialistes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference enseignement.ecore#//Matiere/prof"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

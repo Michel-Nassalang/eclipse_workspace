@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Enseignement:Domaine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:Enseignement="https://enseignement.sn">
+  <enseignants
+      nom="Edgar Mansal"
+      debut="0008-07-19T00:00:00.000+0000"
+      salaire="1500000.0"
+      titre="PR"
+      age="45"
+      specialisations="//@matieres.0"
+      enseignements="//@matieres.0"/>
+  <departements
+      nom="Lettres humaines"
+      responsable="//@enseignants.0"/>
+  <universites
+      nom="Gaston Berger"
+      sigle="UGB"
+      inscrits="//@etudiants.0"
+      facultes="//@departements.0"/>
+  <etudiants
+      nom="Fabrice Biagui"
+      ddn="0034-02-08T00:00:00.000+0000"
+      resultats="//@notes.0"/>
+  <notes date="0035-11-07T00:00:00.000+0000"
+      idNote="5"
+      val="5.0"
+      matiere="//@matieres.0"
+      etudiant="//@etudiants.0"/>
+  <matieres
+      heure="21"
+      nom="LAngues etrangères"
+      resultats="//@notes.0"
+      specialistes="//@enseignants.0"
+      prof="//@enseignants.0"/>
+</Enseignement:Domaine>

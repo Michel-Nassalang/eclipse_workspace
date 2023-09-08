@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Convertisseur.java&apos; to &apos;Examen_IPSL/src/Partie3&apos;&#x0D;&#x0A;- Original project: &apos;TpIPSL&apos;&#x0D;&#x0A;- Destination element: &apos;Examen_IPSL/src/Partie3&apos;&#x0D;&#x0A;- Original element: &apos;Interfaces.Convertisseur.java&apos;" description="Copy compilation unit" destination="=Examen_IPSL/src&lt;Partie3" element1="/src&lt;Interfaces{Convertisseur.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1642680786788" units="1" version="1.0"/>
+</session>

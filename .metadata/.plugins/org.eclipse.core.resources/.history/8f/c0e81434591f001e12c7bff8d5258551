@@ -1,0 +1,43 @@
+package org.xtext.ipsl.calcul.interpreter;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class TextEditorGUI {
+    private JTextArea textArea;
+    private JFrame frame;
+
+    public TextEditorGUI() {
+        frame = new JFrame("Editeur de texte");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        textArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("Fichier");
+        JMenuItem openItem = new JMenuItem("Ouvrir");
+        JMenuItem saveItem = new JMenuItem("Enregistrer");
+        JMenuItem exitItem = new JMenuItem("Quitter");
+
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+        menuBar.add(fileMenu);
+
+        frame.setJMenuBar(menuBar);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new TextEditorGUI();
+            }
+        });
+    }
+}

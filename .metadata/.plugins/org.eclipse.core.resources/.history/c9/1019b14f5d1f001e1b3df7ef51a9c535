@@ -1,0 +1,53 @@
+package org.xtext.ipsl.calcul.interpreter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TextEditorGUI {
+    private JTextArea textArea;
+    private JTextArea outputArea;
+    private JFrame frame;
+
+    public TextEditorGUI() {
+        frame = new JFrame("Editeur de texte");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        textArea = new JTextArea();
+        JScrollPane textScrollPane = new JScrollPane(textArea);
+
+        outputArea = new JTextArea();
+        JScrollPane outputScrollPane = new JScrollPane(outputArea);
+
+        JButton executeButton = new JButton("Exécuter");
+        executeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String text = textArea.getText();
+                // Logique d'exécution du texte ici
+                outputArea.setText("Texte exécuté : " + text);
+            }
+        });
+
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.add(new JLabel("Résultat de l'exécution :"), BorderLayout.NORTH);
+        bottomPanel.add(outputScrollPane, BorderLayout.CENTER);
+
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(textScrollPane, BorderLayout.CENTER);
+        mainPanel.add(executeButton, BorderLayout.EAST);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        frame.getContentPane().add(mainPanel);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new TextEditorGUI();
+            }
+        });
+    }
+}

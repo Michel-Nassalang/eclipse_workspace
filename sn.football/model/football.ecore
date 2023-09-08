@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="football" nsURI="https://football.gouv.sn" nsPrefix="football">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tournois" upperBound="-1"
+        eType="#//Tournoi" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joueurs" upperBound="-1"
+        eType="#//Joueur" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="matchs" upperBound="-1"
+        eType="#//Match"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="equipes" upperBound="-1"
+        eType="#//Equipe" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tournoi">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="q2"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="q2" value="tpro implies equipe->forAll(pro = true)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tpro" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="match" lowerBound="1" upperBound="-1"
+        eType="#//Match" eOpposite="#//Match/tournoi"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="equipe" lowerBound="2"
+        upperBound="-1" eType="#//Equipe"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Joueur">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="equipe" lowerBound="1"
+        eType="#//Equipe" eOpposite="#//Equipe/joueur"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Equipe">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="q1 q3"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="q1" value="pro implies joueur->collect(age)->select(age | age &lt; 18)->isEmpty()"/>
+      <details key="q3" value="pro implies match->forAll(affronte.pro)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pro" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="match" upperBound="-1"
+        eType="#//Match" eOpposite="#//Match/affronte"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="joueur" lowerBound="1"
+        upperBound="5" eType="#//Joueur" eOpposite="#//Joueur/equipe"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tournoi" upperBound="-1"
+        eType="#//Tournoi"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Match">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="victoire" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="affronte" lowerBound="1"
+        eType="#//Equipe" eOpposite="#//Equipe/match"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tournoi" lowerBound="1"
+        eType="#//Tournoi" eOpposite="#//Tournoi/match"/>
+  </eClassifiers>
+</ecore:EPackage>

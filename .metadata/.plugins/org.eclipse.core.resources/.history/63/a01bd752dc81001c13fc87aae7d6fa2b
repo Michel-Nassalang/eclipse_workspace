@@ -1,0 +1,33 @@
+package Window;
+
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class Ajout {
+
+	public Ajout() {
+	}
+	private String value = "";
+	private Boolean error = false;
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	public Boolean getError() {
+		return error;
+	}
+	public void setError(Boolean error) {
+		this.error = error;
+	}
+
+	public JLabel label = new JLabel("", SwingConstants.CENTER);
+	public JPanel fenetre() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		return panel;
+	}
+}

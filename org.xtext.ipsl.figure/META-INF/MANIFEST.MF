@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.ipsl.figure
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.ipsl.figure
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.ipsl.figure; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.xtext.ipsl.figure.figure.impl,
+ org.xtext.ipsl.figure.parser.antlr.internal,
+ org.xtext.ipsl.figure.figure.util,
+ org.xtext.ipsl.figure.figure,
+ org.xtext.ipsl.figure.serializer,
+ org.xtext.ipsl.figure.generator,
+ org.xtext.ipsl.figure,
+ org.xtext.ipsl.figure.scoping,
+ org.xtext.ipsl.figure.services,
+ org.xtext.ipsl.figure.parser.antlr,
+ org.xtext.ipsl.figure.validation
+Import-Package: org.apache.log4j

@@ -1,0 +1,9 @@
+package Window;
+
+public class Centre {
+
+	public Centre() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

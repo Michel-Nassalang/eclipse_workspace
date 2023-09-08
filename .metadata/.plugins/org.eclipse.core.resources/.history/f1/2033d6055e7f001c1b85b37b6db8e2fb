@@ -1,0 +1,44 @@
+package Window;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.swing.*;
+
+import Database.Database;
+import Entite.Section;
+
+public class Affichage extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+
+	public Affichage() {
+		
+	}
+	
+	public static JPanel affiche() {
+		JPanel panel = new JPanel();
+		Database base = new Database();
+		Collection<Section> stock = base.initialSection("select * from section");
+		Iterator<Section> it = stock.iterator();
+		String[] column = {"Id Section","Chef de Section","Secretaire","Personnel","Nom de section"};
+		String[][] data = new String[][]{};
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		int len = 0;
+		while(it.hasNext()) {
+			Section sec = (Section) it.next();
+			
+			list.add(new String[] {String.valueOf(sec.getIdSection()),
+					sec.getChef(),sec.getSecretaire(),String.valueOf(sec.getPersonnel()),
+					sec.getLibelleSection()});
+			len++;
+		}
+		String[][] don = list.stream().toArray(String[][]::new);
+		JTable table = new JTable(don,column);
+		System.out.println(don[0]);
+		panel.add(table);
+		return panel;
+	}
+
+}

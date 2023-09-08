@@ -1,0 +1,71 @@
+package org.xtext.ipsl.calcul.interpreter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TextEditorGUI {
+    private JTextArea textArea;
+    private JFrame frame;
+    private JTextArea resultTextArea;
+
+    public TextEditorGUI() {
+        frame = new JFrame("Editeur de texte");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        textArea = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("Fichier");
+        JMenuItem openItem = new JMenuItem("Ouvrir");
+        JMenuItem saveItem = new JMenuItem("Enregistrer");
+        JMenuItem exitItem = new JMenuItem("Quitter");
+
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+        menuBar.add(fileMenu);
+
+        JButton executeButton = new JButton("Exécuter");
+        executeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                executeCode();
+            }
+        });
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.add(executeButton);
+        frame.getContentPane().add(buttonPanel, BorderLayout.NORTH);
+
+        resultTextArea = new JTextArea(300, 600);
+        resultTextArea.setEditable(false);
+        JScrollPane resultScrollPane = new JScrollPane(resultTextArea);
+        frame.getContentPane().add(resultScrollPane, BorderLayout.SOUTH);
+
+        frame.setJMenuBar(menuBar);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
+
+    private void executeCode() {
+        // Logique d'exécution du code à implémenter ici
+        String code = textArea.getText();
+
+        // Exemple de mise à jour du résultat
+        String result = "Résultat : " + code.toUpperCase();
+        resultTextArea.setText(result);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new TextEditorGUI();
+            }
+        });
+    }
+}

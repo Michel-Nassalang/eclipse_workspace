@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.ipsl.airport
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.ipsl.airport
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.ipsl.airport; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.xtext.ipsl.airport.airPort.util,
+ org.xtext.ipsl.airport,
+ org.xtext.ipsl.airport.airPort,
+ org.xtext.ipsl.airport.parser.antlr,
+ org.xtext.ipsl.airport.serializer,
+ org.xtext.ipsl.airport.parser.antlr.internal,
+ org.xtext.ipsl.airport.validation,
+ org.xtext.ipsl.airport.scoping,
+ org.xtext.ipsl.airport.airPort.impl,
+ org.xtext.ipsl.airport.services,
+ org.xtext.ipsl.airport.generator
+Import-Package: org.apache.log4j

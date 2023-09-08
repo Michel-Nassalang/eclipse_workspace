@@ -1,0 +1,39 @@
+grammar org.xtext.ipsl.airport.AirPort with org.eclipse.xtext.common.Terminals
+
+generate airPort "http://www.xtext.org/ipsl/airport/AirPort"
+
+Model:
+    (avions+=Avion | aeroports+=Aeroport)*(lignes+=Ligne)*;
+
+
+Avion:
+    'Avion' name=ID ':'
+    ('Passagers'':'passagers=INT ';'
+&    'Motorisation'':'motorisation=Moteurs';')
+    'End.';
+
+Aeroport:
+    'Aeroport' nom=STRING ':'
+    ('OACI' ':' name=CodeOACI';'
+&    'Pays' ':'pays=STRING';'
+&    'Pistes' ':'pistes=INT';')
+    'End.';
+
+Ligne:
+    'Ligne' name=STRING ':'
+    ('Avion' ':'avion=[Avion]';'
+&    'Compagnie' ':'compagnie=STRING';'
+&    'Depart' ':' depart=[CodeOACI|OACI]';'
+&    'Arrivee' ':'arrivee=[CodeOACI|OACI]';'
+&    'Duree' ':' duree=DURATION';'
+&    regular?='REGULIERE;'?)
+    'End.';
+
+enum Moteurs:
+  p1 ='HELICES' | p2 = 'PROPULSEURS'    ;
+
+terminal DURATION : (('0'..'2''0'..'9')'h')?('0'..'5''0'..'9')'m';
+
+CodeOACI : name=OACI;
+
+terminal OACI : ('A'..'Z')('A'..'Z')('A'..'Z')('A'..'Z');

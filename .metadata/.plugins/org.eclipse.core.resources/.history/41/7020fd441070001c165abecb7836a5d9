@@ -1,0 +1,36 @@
+package Exercice1;
+
+public abstract class Emission {
+	
+	private String nom;
+	private int duree;
+	private int hdiffuse;
+	public Emission(String nom, int duree) {
+		this.setNom(nom); 
+		this.setDuree(duree);
+	}
+	public int  hprogramme() {
+		return this.getHdiffuse() + duree;
+	}
+	public String programmation() {
+		int hfin = this.getHdiffuse() + duree;
+		return "L'heure de fin de l'émission est " + hfin ;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public double getDuree() {
+		return duree;
+	}
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+	public int getHdiffuse() {
+		return hdiffuse;
+	}
+	public abstract void setHdiffuse(int hdiffuse);
+
+}

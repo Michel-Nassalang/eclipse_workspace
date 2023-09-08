@@ -1,0 +1,18 @@
+
+public class Personne {
+	String nom;
+	String prenom;
+	int age;
+	String sexe;
+
+	public Personne(String nom, String prenom, int age, String sexe) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		this.sexe = sexe;
+	}
+	public void Informations() {
+		System.out.println("La personne désignée porte le nom de " + prenom + " "+ nom + " " + " et est agé de " + age + " et est de sexe " + sexe + ".");
+	}
+	
+}

@@ -1,0 +1,7 @@
+Figure Rectangle
+BEGIN
+	longueur:5;
+	largeur: 6;
+	return surface;
+END
+

@@ -1,0 +1,33 @@
+package Exercice4;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Exo4_2 {
+	public static Scanner scanner = new Scanner(System.in);
+	public int  entree ()  throws Exception{
+		try {
+			int entree = scanner.nextInt();
+			System.out.println("Le nombre entier saisi est : " + entree);
+		}catch(InputMismatchException e){
+			 throw new InputMismatchException();
+		}
+		return entree();
+	}
+	public static void main(String[] args) {
+		boolean error = false;
+		System.out.println("Veuillez donner un nombre entier : ");
+		 do{
+			 try {
+					int entree = scanner.nextInt();
+					System.out.println("Le nombre entier saisi est : " + entree);
+					error = true;
+					break;
+				}catch(InputMismatchException e){
+					System.out.println("Veuillez réessayer de donner un nombre entier : ");
+					error = false;
+					break;
+				}
+	}while(error == false);
+
+}
+}

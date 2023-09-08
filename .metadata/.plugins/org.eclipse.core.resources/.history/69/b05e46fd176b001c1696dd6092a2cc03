@@ -1,0 +1,9 @@
+package exercice2;
+
+public class InstancesEnseignant {
+
+	public InstancesEnseignant() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
